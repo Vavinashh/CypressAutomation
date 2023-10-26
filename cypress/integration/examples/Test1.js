@@ -12,14 +12,16 @@ describe('My First Test Suite', function () {
         cy.get('.product:visible').should('have.length', 4);
         //parent and child chaining 
         cy.wait(2000);
-        cy.get('.products').find('.product').should('have.length', 4);
+
+        cy.get('.products').as('ProductLocator')
+        cy.get('@ProductLocator').find('.product').should('have.length', 4);
 
         // select or click on element
-        cy.get('.products').find('.product').eq(2).contains('ADD TO CART').click();
+        cy.get('@ProductLocator').find('.product').eq(2).contains('ADD TO CART').click();
 
         //Select a element in a loop
 
-        cy.get('.products').find('.product').each(($el, index, $list) => {
+        cy.get('@ProductLocator').find('.product').each(($el, index, $list) => {
  
             const textVeg=$el.find('h4.product-name').text()
             if(textVeg.includes('Cashews'))
@@ -28,12 +30,14 @@ describe('My First Test Suite', function () {
             }
             })
 
-        // Select and display text
-
+        // Select and print in log
         cy.get('.brand').then(function(logoelement)
         {
             cy.log(logoelement.text())
         })
+
+        //Assertion
+        cy.get('.brand').should('have.text','GREENKART')
 
     });
 });
