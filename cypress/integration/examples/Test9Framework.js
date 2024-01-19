@@ -1,6 +1,7 @@
 /// <reference types="Cypress" />
 import HomePage from "../pageObjects/HomePage"
 import ProductPage from "../pageObjects/ProductPage"
+import CheckOutPage from "../pageObjects/CheckOutPage"
 describe('My 9th Test Suite', function() 
 {
 
@@ -16,6 +17,7 @@ describe('My 9th Test Suite', function()
  it('My 9th Test case',function() {
 const homepage = new HomePage()
 const productPage = new ProductPage()
+const checkOutPage = new CheckOutPage()
 
      cy.visit("https://rahulshettyacademy.com/angularpractice/")
 
@@ -32,16 +34,20 @@ const productPage = new ProductPage()
 
 
      this.data.productName.forEach(function(element){
-
      cy.selectProduct(element)
-
-     cy.wait(6000);
-
      productPage.CheckoutButton().click()
+     checkOutPage.clickCheckOutButton().click()
+     checkOutPage.getCountry().type('India')
+     checkOutPage.clickCountry().click()
+     checkOutPage.clickCheckBox().click()
+     checkOutPage.clickPurchaseButton().click()
+    //cy.get('.alert').should('have.text','Success! Thank you! Your order will be delivered in next few weeks :-).')
+     cy.get('.alert').then(function (element) {
+        const actualText = element.text()
+        expect(actualText.includes("Success")).to.be.true
 
-
-    });
+    })
 
  })
-
+})
 })
