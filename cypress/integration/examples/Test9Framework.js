@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
-
-
+import HomePage from "../pageObjects/HomePage"
+import ProductPage from "../pageObjects/ProductPage"
 describe('My 9th Test Suite', function() 
 {
 
@@ -14,19 +14,34 @@ describe('My 9th Test Suite', function()
     })
  
  it('My 9th Test case',function() {
+const homepage = new HomePage()
+const productPage = new ProductPage()
 
      cy.visit("https://rahulshettyacademy.com/angularpractice/")
-     cy.get('input[name="name"]:nth-child(2)').type(this.data.name)
-     cy.get('select').select(this.data.gender)
+
+     homepage.getNameEditBox().type(this.data.name)
+     homepage.getGender().select(this.data.gender)
+     homepage.getTwoWayDataBindingBox().should('have.value', this.data.name)
+     homepage.getNameEditBox().should('have.attr', 'minlength', '2')
+     homepage.getEntrepreneurRadioButton().should('be.disabled')
+
+     homepage.getShopTab().click()
+
+     
+//https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Arrays
 
 
-     cy.get(':nth-child(4) > .ng-untouched').should('have.value', this.data.name)
-    cy.get('input[name="name"]:nth-child(2)').should('have.attr', 'minlength', '2')
-     //cy.get('#inlineradio3').should('be.disabled')
- 
+     this.data.productName.forEach(function(element){
+
+     cy.selectProduct(element)
+
+     cy.wait(6000);
+
+     productPage.CheckoutButton().click()
+
+
+    });
 
  })
-
-
 
 })
