@@ -25,9 +25,34 @@ const checkOutPage = new CheckOutPage()
      homepage.getEntrepreneurRadioButton().should('be.disabled')
      homepage.getShopTab().click()
      //https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Arrays
+
+
      this.data.productName.forEach(function(element){
      cy.selectProduct(element)
+    });
      productPage.CheckoutButton().click()
+
+     var sum = 0
+
+     cy.get('tr td:nth-child(4) strong').each(($el, index, $list) => {
+
+        const amount = $el.text()
+        var res = amount.split(" ")
+        res = res[1].trim()
+        sum = Number(sum) + Number(res)
+    
+    }).then(function(){
+        cy.log(sum)
+      })
+
+      cy.get('h3 strong').then(function (element) {
+        const amount = element.text()
+        var res = amount.split(" ")
+        var total = res[1].trim()
+        expect(Number(total)).to.equal(sum)
+  
+      })
+
      checkOutPage.clickCheckOutButton().click()
      checkOutPage.getCountry().type('India')
      checkOutPage.clickCountry().click()
@@ -41,5 +66,5 @@ const checkOutPage = new CheckOutPage()
     })
 
  })
-})
+
 })
