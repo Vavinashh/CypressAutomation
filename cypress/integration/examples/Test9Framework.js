@@ -16,7 +16,8 @@ const homepage = new HomePage()
 const productPage = new ProductPage()
 const checkOutPage = new CheckOutPage()
 
-     cy.visit("https://rahulshettyacademy.com/angularpractice/")
+     cy.visit(Cypress.env('url')+"/angularpractice/")
+     
 
      homepage.getNameEditBox().type(this.data.name)
      homepage.getGender().select(this.data.gender)

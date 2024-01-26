@@ -5,7 +5,7 @@ describe('My Fifth Test Suite', function()
 it('My Fifth Test case',function() {
  
 //Using Cypress naviagtion inbetween pages is not avilable so if there is a page need to be navigated we need to close the present tab and load the new tab
-cy.visit("https://rahulshettyacademy.com/AutomationPractice/")
+cy.visit(Cypress.env('url')+"/AutomationPractice/")
 
 cy.get('#opentab').invoke('removeAttr','target').click()
 
