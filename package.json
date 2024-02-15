@@ -13,10 +13,11 @@
   "license": "ISC",
   "devDependencies": {
     "cypress": "^13.6.4",
-    "cypress-iframe": "^1.0.1"
+    "mocha": "^10.1.0"
   },
   "dependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^20.0.1",
-    "@cypress/browserify-preprocessor": "latest"
+    "@cypress/browserify-preprocessor": "latest",
+    "cypress-iframe": "^1.0.1"
   }
 }
