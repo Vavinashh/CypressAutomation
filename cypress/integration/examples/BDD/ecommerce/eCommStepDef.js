@@ -73,6 +73,11 @@ When('I fill the form details',function(dataTable)
         name = dataTable.rawTable[1][0]
         homePage.getEditBox().type(dataTable.rawTable[1][0])
         homePage.getGender().select(dataTable.rawTable[1][1])
+        //homePage.getNameEditBox().type(this.data.name)
+        //homePage.getGender().select(this.data.gender)
+
+
+
     })
     // Then validate the forms behaviour
 Then('validate the forms behaviour',function()
