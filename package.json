@@ -9,13 +9,20 @@
     "headTest": "npm run test -- --headed",
     "chromeTest": "npm run test --browser chrome"
   },
-  "author": "",
+  "cypress-cucumber-preprocessor": {
+    "json": {
+      "enabled": true,
+      "formatter": "cypress/cucumberReports/results.json",
+      "output": "cypress/cucumberReports/results.json"
+    }
+  },
+  "author": "Avinash",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.6.4",
+    "cypress": "^13.6.5",
     "cypress-sql-server": "^1.0.0",
     "mocha": "^10.1.0",
-    "multiple-cucumber-html-reporter": "^3.0.1",
+    "multiple-cucumber-html-reporter": "^3.6.2",
     "neat-csv": "5.1.0"
   },
   "dependencies": {

@@ -65,26 +65,27 @@ Then('select the country submit and verify Thankyou',()=>
 
     })
     })
+
+
+
     //When I fill the form details
-When('I fill the form details',function(dataTable)
+    When('I fill the form details',function(dataTable)
     {
 
         // [bobz , male   ]
         name = dataTable.rawTable[1][0]
-        homePage.getEditBox().type(dataTable.rawTable[1][0])
+        homePage.getNameEditBox().type(dataTable.rawTable[1][0])
         homePage.getGender().select(dataTable.rawTable[1][1])
-        //homePage.getNameEditBox().type(this.data.name)
+                //homePage.getNameEditBox().type(this.data.name)
         //homePage.getGender().select(this.data.gender)
-
-
-
     })
+
     // Then validate the forms behaviour
 Then('validate the forms behaviour',function()
     {
     homePage.getTwoWayDataBindingBox().should('have.value', this.data.name)
-    homePage.getEditBox().should('have.attr','minlength','2')
-    homePage.getEntrepreneaur().should('be.disabled')
+    homePage.getNameEditBox().should('have.attr','minlength','2')
+    homePage.getEntrepreneurRadioButton().should('be.disabled')
     Cypress.config('defaultCommandTimeout', 8000)
     })
     // And select the Shop Page
