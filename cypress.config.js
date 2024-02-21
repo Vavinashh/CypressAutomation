@@ -14,10 +14,11 @@ async function setupNodeEvents(on, config) {
   return config;
 }
 
+
 module.exports = defineConfig({
 
-  defaultCommandTimeout: 6000,
-
+  defaultCommandTimeout: 8000,
+ 
   env:{
 
     url: "https://rahulshettyacademy.com",
